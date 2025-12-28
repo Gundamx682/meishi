@@ -95,13 +95,30 @@ get_github_token() {
     echo "4. 生成并复制Token"
     echo ""
     
-    read -s -p "请输入您的GitHub Token: " GITHUB_TOKEN
-    echo ""
+    # 读取GitHub Token，确保等待用户输入
+    while true; do
+        read -s -p "请输入您的GitHub Token: " GITHUB_TOKEN
+        echo ""
+        
+        if [ -z "$GITHUB_TOKEN" ]; then
+            log_error "GitHub Token不能为空，请重新输入"
+            continue
+        fi
+        
+        # 验证Token
+        log_info "验证GitHub Token..."
+        if curl -fsSL -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/user" >/dev/null 2>&1; then
+            log_info "✓ Token验证成功"
+            break
+        else
+            log_error "✗ Token验证失败，请检查Token是否正确，然后重新输入"
+            continue
+        fi
+    done
     
-    if [ -z "$GITHUB_TOKEN" ]; then
-        log_error "GitHub Token不能为空"
-        exit 1
-    fi
+    # 将Token保存到临时变量
+    export GITHUB_TOKEN="$GITHUB_TOKEN"
     
     # 验证Token
     log_info "验证GitHub Token..."
