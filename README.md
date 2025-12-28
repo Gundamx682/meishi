@@ -39,3 +39,4 @@
    3
    4 # 然后直接运行脚本（这样可以读取输入）
    5 sudo bash install.sh
+ 
