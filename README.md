@@ -22,6 +22,18 @@
 ✦ 推荐使用方法1，重启服务后它会立即执行一次下载检查，然后继续按10分钟间隔自动检查。
 
 
+
+
+   1 # 查看状态
+   2 systemctl status apk-downloader apk-server
+   3
+   4 # 重启服务
+   5 systemctl restart apk-downloader apk-server
+   6
+   7 # 查看日志
+   8 journalctl -u apk-downloader -f
+
+
    1 # 首先下载脚本到本地
    2 curl -fsSL https://raw.githubusercontent.com/Gundamx682/meishi/main/install.sh -o install.sh
    3
