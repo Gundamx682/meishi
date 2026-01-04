@@ -1,8 +1,4 @@
 如果您想让它立即下载最新APK，可以使用以下方法：
-git clone https://github.com/Gundamx682/meishi.git
-cd meishi
-
-sudo bash install-new.sh
 
   🔄 方法1：重启下载服务（推荐）
    1 # 立即重启服务，触发一次下载检查
